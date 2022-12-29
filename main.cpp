@@ -41,9 +41,9 @@ int main(int argc, const char *argv[]) {
     bool dont_run_tests { false };
     bool run_only_tests { false };
     for (int i { 1 }; i < argc; ++i) {
-        if (argv[i] == std::string { "--dont-run-tests" }) {
+        if (strcmp(argv[i], "--dont-run-tests") == 0) {
             dont_run_tests = true;
-        } else if (argv[i] == std::string { "--run-only-tests" }) {
+        } else if (strcmp(argv[i], "--run-only-tests") == 0) {
             run_only_tests = true;
         } else {
             std::cerr << "unknown option: " << argv[i] << "\n";
