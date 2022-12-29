@@ -31,6 +31,7 @@ void run_unit_tests() {
 [[noreturn]] void mainloop() {
     Retriever retriever;
     Server server { retriever };
+    server.open();
     for (;;) {
         server.handle_next_request();
     }

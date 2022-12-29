@@ -7,8 +7,9 @@ class Server {
     public:
         unsigned short port = 3142;
 
-        Server(Retriever &retriever): retriever_ { retriever } { }
+        explicit Server(Retriever &retriever): retriever_ { retriever } { }
+
+        void open();
 
         void handle_next_request();
-
 };

@@ -14,7 +14,7 @@ class Retriever {
         using Path = std::filesystem::path;
         using Value_Type = std::optional<std::unique_ptr<std::istream>>;
 
-        Path base {std::filesystem::current_path()};
+        Path base { std::filesystem::current_path() };
 
         [[nodiscard]] Value_Type get(const Path &path, unsigned version) const;
 
