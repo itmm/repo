@@ -8,9 +8,9 @@
 #include <fstream>
 
 class Retriever {
+    public:
         constexpr static char LATEST_TAG[] = "latest";
 
-    public:
         using Path = std::filesystem::path;
         using Value_Type = std::optional<std::unique_ptr<std::istream>>;
 
