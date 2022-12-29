@@ -3,4 +3,4 @@ project(repo)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(repo main.cpp retriever.cpp retriever.h)
+add_executable(repo retriever.cpp retriever.h main.cpp)
