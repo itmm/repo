@@ -1,6 +1,4 @@
-* throw on error
 * Session class
-* Selector_Handler class
 * create Session instance on accept
 * authentication
 * separate files and paths
@@ -9,3 +7,4 @@
 * compression
 * container format
 * limit number of sessions
+* implement select

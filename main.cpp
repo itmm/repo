@@ -1,4 +1,6 @@
+#include "err.h"
 #include "retriever.h"
+#include "selector-handler.h"
 #include "server.h"
 
 #include <iostream>
@@ -29,11 +31,13 @@ void run_unit_tests() {
 }
 
 [[noreturn]] void mainloop() {
+    Selector_Handler handler;
     Retriever retriever;
-    Server server { retriever };
-    server.open();
+    auto server { std::make_unique<Server>(retriever) };
+    server->open();
+    handler += std::move(server);
     for (;;) {
-        server.handle_next_request();
+        handler.handle_next_io();
     }
 }
 
@@ -52,5 +56,10 @@ int main(int argc, const char *argv[]) {
     }
     if (! dont_run_tests) { run_unit_tests(); }
     if (run_only_tests) { return EXIT_SUCCESS; }
-    mainloop();
+    try {
+        mainloop();
+    } catch (const Error &err) {
+        std::cerr << err.what() << "\n";
+        return EXIT_FAILURE;
+    }
 }
