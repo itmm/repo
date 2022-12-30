@@ -1,6 +1,7 @@
 #include "err.h"
 #include "retriever.h"
 #include "selector-handler.h"
+#include "test-reader.h"
 #include "server.h"
 
 #include <iostream>
@@ -28,6 +29,11 @@ void run_unit_tests() {
         assert(! got.has_value());
     }
     std::filesystem::remove_all(retriever.base);
+
+    Test_Reader::run(
+        { "a\r\nb", "\r\nc\r\n", "\r\n" },
+        { "a\r\n", "b\r\n", "c\r\n", "\r\n" }
+    );
 }
 
 [[noreturn]] void mainloop() {

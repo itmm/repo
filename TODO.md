@@ -8,3 +8,4 @@
 * implement select
 * SSL encryption
 * SSL client certificates
+* client
