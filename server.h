@@ -12,7 +12,5 @@ class Server: public Selector {
 
         void open();
 
-        void handle_next_request();
-
-        void do_read() override;
+        void do_read(Selector_Handler &handler) override;
 };

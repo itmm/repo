@@ -1,5 +1,3 @@
-* Session class
-* create Session instance on accept
 * authentication
 * separate files and paths
 * tag should collect all versions for included paths

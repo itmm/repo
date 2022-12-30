@@ -4,17 +4,17 @@
 #include <unistd.h>
 
 void Selector::close() {
-    if (handler >= 0) {
-        ::close(handler);
-        handler = -1;
+    if (handle >= 0) {
+        ::close(handle);
+        handle = -1;
         can_read = can_write = false;
     }
 }
 
-void Selector::do_read() {
+void Selector::do_read(Selector_Handler &handler) {
     assert("not implemented");
 }
 
-void Selector::do_write() {
+void Selector::do_write(Selector_Handler &handler) {
     assert("not implemented");
 }
