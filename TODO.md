@@ -8,3 +8,5 @@
 * container format
 * limit number of sessions
 * implement select
+* SSL encryption
+* SSL client certificates
