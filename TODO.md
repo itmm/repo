@@ -8,3 +8,4 @@
 * tags in different versions = branches
 * compression
 * container format
+* limit number of sessions
