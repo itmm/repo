@@ -32,6 +32,7 @@ void Server::do_read(Selector_Handler &handler) {
         std::cerr << "cannot accept\n";
         return;
     }
-    auto session = std::make_unique<Session>(session_socket);
+    auto session = std::make_unique<Session>(retriever_, session_socket);
+    std::cout << "accepted socket " << session_socket << "\n";
     handler += std::move(session);
 }

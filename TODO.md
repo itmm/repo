@@ -8,4 +8,3 @@
 * implement select
 * SSL encryption
 * SSL client certificates
-* parse HTTP header

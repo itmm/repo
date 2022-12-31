@@ -4,7 +4,7 @@ class Selector_Handler;
 
 class Selector {
     public:
-        int handle {-1 };
+        int handle { -1 };
         bool can_read { false };
         bool can_write { false };
 
