@@ -8,9 +8,9 @@
 
 void run_unit_tests() {
     Retriever retriever; retriever.base = retriever.base / "unit-tests";
-    std::filesystem::create_directories(retriever.base / "a");
-    { std::ofstream out { retriever.base / "a" / "0" }; out << "abc"; }
-    { std::ofstream out { retriever.base / "a" / Retriever::LATEST_TAG }; out << 0; }
+    std::filesystem::create_directories(retriever.base / "files" / "a");
+    { std::ofstream out { retriever.base / "files" / "a" / "0" }; out << "abc"; }
+    { std::ofstream out { retriever.base / "files" / "a" / Retriever::LATEST_TAG }; out << 0; }
     {
         auto got { retriever.get("a") };
         std::string value;
