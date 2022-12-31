@@ -3,7 +3,6 @@
 #include <filesystem>
 #include <istream>
 #include <memory>
-#include <optional>
 #include <string>
 #include <fstream>
 
@@ -12,7 +11,7 @@ class Retriever {
         constexpr static char LATEST_TAG[] = "latest";
 
         using Path = std::filesystem::path;
-        using Value_Type = std::optional<std::unique_ptr<std::istream>>;
+        using Value_Type = std::unique_ptr<std::istream>;
 
         Path base { std::filesystem::current_path() };
 

@@ -14,19 +14,19 @@ void run_unit_tests() {
     {
         auto got { retriever.get("a") };
         std::string value;
-        *got.value() >> value; assert(value == "abc");
+        *got >> value; assert(value == "abc");
     }
     {
         auto got { retriever.get("a", 10) };
-        assert(! got.has_value());
+        assert(! got);
     }
     {
         auto got { retriever.get("a", "no-tag") };
-        assert(! got.has_value());
+        assert(! got);
     }
     {
         auto got { retriever.get("x") };
-        assert(! got.has_value());
+        assert(! got);
     }
     std::filesystem::remove_all(retriever.base);
 
