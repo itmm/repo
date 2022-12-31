@@ -36,10 +36,12 @@ void run_unit_tests() {
     );
 }
 
-[[noreturn]] void mainloop() {
+[[noreturn]] void mainloop(unsigned short port, const std::filesystem::path &path) {
     Selector_Handler handler;
     Retriever retriever;
+    retriever.base = path;
     auto server { std::make_unique<Server>(retriever) };
+    server->port = port;
     server->open();
     handler += std::move(server);
     for (;;) {
@@ -47,14 +49,24 @@ void run_unit_tests() {
     }
 }
 
+#define AFTER_PREFIX(S, P) (memcmp(S, P, sizeof(P) - 1) == 0 ? S + sizeof(P) - 1 : nullptr)
+
 int main(int argc, const char *argv[]) {
     bool dont_run_tests { false };
     bool run_only_tests { false };
+    unsigned short port { 3142 };
+    auto path { std::filesystem::current_path() };
+    const char *found;
+
     for (int i { 1 }; i < argc; ++i) {
         if (strcmp(argv[i], "--dont-run-tests") == 0) {
             dont_run_tests = true;
         } else if (strcmp(argv[i], "--run-only-tests") == 0) {
             run_only_tests = true;
+        } else if ((found = AFTER_PREFIX(argv[i], "--port="))) {
+            port = std::stoi(found);
+        } else if ((found = AFTER_PREFIX(argv[i], "--base="))) {
+            path = found;
         } else {
             std::cerr << "unknown option: " << argv[i] << "\n";
             return EXIT_FAILURE;
@@ -63,7 +75,7 @@ int main(int argc, const char *argv[]) {
     if (! dont_run_tests) { run_unit_tests(); }
     if (run_only_tests) { return EXIT_SUCCESS; }
     try {
-        mainloop();
+        mainloop(port, path);
     } catch (const Error &err) {
         std::cerr << err.what() << "\n";
         return EXIT_FAILURE;
