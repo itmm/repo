@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <iostream>
 #include <netinet/in.h>
+#include <cassert>
 
 #include "err.h"
 #include "selector-handler.h"

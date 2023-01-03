@@ -4,6 +4,7 @@
 #include "test-reader.h"
 #include "server.h"
 
+#include <cassert>
 #include <iostream>
 
 void run_unit_tests() {

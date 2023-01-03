@@ -1,9 +1,11 @@
 #include "test-reader.h"
 
+#include <cassert>
+
 void Test_Reader::run(const std::vector<std::string> &to_receive, const std::vector<std::string> &to_expect) {
     Test_Reader t { to_receive, to_expect };
     while (! t.all_received()) {
-        t.read_next_bytes();
+        assert(t.read_next_bytes());
     }
     assert(t.all_expected());
 }
