@@ -20,6 +20,7 @@ ssize_t Test_Reader::receive(void *buffer, size_t count) {
 }
 
 void Test_Reader::process_line(const char *begin, const char *end) {
+    assert(begin < end && end[-1] == '\n');
     std::string value { begin, end };
     assert(cur_expect_ != to_expect_.end());
     assert(*cur_expect_ == value);

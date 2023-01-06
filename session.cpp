@@ -2,9 +2,11 @@
 
 #include "selector-handler.h"
 
+#include <cassert>
 #include <iostream>
 
 void Session::process_line(const char *begin, const char *end) {
+    assert(begin < end && end[-1] == '\n');
     std::cout << "got " << std::string { begin, end };
     if (eat_headers_) {
         if (memcmp("\r\n", begin, end - begin) == 0) {
